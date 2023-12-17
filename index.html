@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Xurco</title>
+    <link href="https://fonts.googleapis.com/css2?family=Permanent+Marker&display=swap" rel="stylesheet">
+    <link rel="icon" type="image/png" href="https://cdn.discordapp.com/attachments/909508225123098654/1185696105917317200/poke.png">
+    
+    <style>
+        body, html {
+            height: 100%;
+            margin: 0;
+            overflow: hidden;
+            /* Removed the gray background */
+        }
+
+        #bg-video {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            z-index: -1;
+            /* The video will be visible by default */
+            visibility: visible; 
+            opacity: 1; 
+        }
+
+        #enter-screen {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 1.9); /* Semi-transparent black to see the video behind */
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 1000;
+            cursor: pointer;
+        }
+
+        #enter-text {
+            font-size: 2em;
+            color: white;
+            padding: 10px 20px;
+            font-family: 'Permanent+Marker', cursive;
+            background: none;
+            border: none;
+            cursor: pointer;
+        }
+
+        .profile {
+            text-align: center;
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            z-index: 10;
+            margin-top: 20px;
+            font-size: 1em;
+            font-family: 'Permanent+Marker', cursive;
+
+            /* Adding the glowing box effect */
+            border: 2px solid #720017; /* Glowing border color */
+            border-radius: 10px; /* Rounded corners */
+            padding: 20px;
+            box-shadow: 0 0 5px #000000, /* Inner white glow */
+                        0 0 15px #a50000, /* Medium glow */
+                        0 0 25px #ff0000, /* Outer glow */
+                        0 0 35px #000000; /* Farthest glow */
+            background: rgba(0, 0, 0, 0.1); /* Slight transparency */
+        }
+
+        .username {
+            margin-top: 20px;
+            color: black;
+            font-size: 4em; /* Increased font size for the username */
+            font-family: 'Permanent+Marker', cursive; /* Maintain the font style */
+        }
+
+        .social-links {
+            display: flex;
+            justify-content: center;
+            margin-top: 20px;
+        }
+
+        .social-icon {
+            display: inline-block;
+            position: relative;
+            width: 50px;
+            height: 50px;
+            margin: 10px;
+            transition: transform 0.3s ease;
+        }
+
+        .social-icon:hover {
+            transform: scale(1.1); /* Slightly enlarge icons on hover */
+        }
+
+        .social-icon img {
+            width: 100%;
+            height: auto;
+            transition: opacity 0.3s ease;
+            opacity: 0.7;
+        }
+
+        .social-icon:hover img {
+            opacity: 1;
+        }
+
+        .social-icon::after {
+            content: attr(data-label);
+            position: absolute;
+            bottom: -30px; /* Position the label lower */
+            left: 50%;
+            transform: translateX(-50%);
+            color: #000000;
+            font-family: Arial, sans-serif;
+            font-size: 20px;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .social-icon:hover::after {
+            opacity: 1;
+        }
+    </style>
+</head>
+<body>
+
+    <video id="bg-video" autoplay loop muted style="display: none;">
+        <source src="https://cdn.discordapp.com/attachments/909508225123098654/1185717503536660592/a.mp4?ex=6590a07a&is=657e2b7a&hm=05eb71080748b390f11bede51b033508add987f71553127433f197a66e6057fc&" type="video/mp4">
+        Your browser does not support the video tag.
+    </video>
+
+    <div id="enter-screen">
+        <div id="enter-text">ENTER</div>
+    </div>
+
+    <div class="profile">
+        <div class="username">Xurco</div>
+        <div class="social-links">
+            <!-- Instagram User Icon -->
+            <a href="https://www.instagram.com/xurcowrld" target="_blank" class="social-icon" data-label="Instagram">
+                <img src="https://cdn.discordapp.com/attachments/909508225123098654/1185637549746688051/new-Instagram-logo-black-glyph.png" alt="Instagram User">
+            </a>
+            <!-- Roblox User Icon -->
+            <a href="https://www.roblox.com/users/101049003/profile" target="_blank" class="social-icon" data-label="Roblox">
+                <img src="https://cdn.discordapp.com/attachments/909508225123098654/1185638487488221185/0eeeb19633422b1241f4306419a0f15f39d58de9.png" alt="Roblox User">
+            </a>
+            <!-- TikTok User Icon -->
+            <a href="https://www.tiktok.com/@.xurco" target="_blank" class="social-icon" data-label="TikTok">
+                <img src="https://cdn.discordapp.com/attachments/909508225123098654/1185638663678337114/tiktok-black-icon-logo-CF54F85379-seeklogo.png" alt="TikTok User">
+            </a>
+            <!-- Discord User Icon -->
+            <a href="https://discord.com/users/1033895994145918998" target="_blank" class="social-icon" data-label="Discord">
+                <img src="https://cdn.discordapp.com/attachments/909508225123098654/1186011557814075422/image_2023-12-17_132622066.png?ex=6591b256&is=657f3d56&hm=2b8c65e3d9cbd2533af1f45c14bbed71319ce82716a42619d44682409185b647&" alt="Discord User">
+            </a>
+            <!-- Discord Server Icon -->
+            <a href="https://discord.gg/care" target="_blank" class="social-icon" data-label="Server">
+                <img src="https://cdn.discordapp.com/attachments/909508225123098654/1186011557814075422/image_2023-12-17_132622066.png?ex=6591b256&is=657f3d56&hm=2b8c65e3d9cbd2533af1f45c14bbed71319ce82716a42619d44682409185b647&" alt="Discord Server">
+            </a>
+            <!-- Add more social icons and links here if needed -->
+        </div>
+    </div>
+
+    <!-- Scripts for interactivity -->
+    <script>
+        var enterScreen = document.getElementById('enter-screen');
+        var videoBg = document.getElementById('bg-video');
+
+        enterScreen.addEventListener('click', function() {
+            enterScreen.style.display = 'none'; // Hide the ENTER screen
+            videoBg.style.display = 'block'; // Make the video visible
+            videoBg.muted = false; // Unmute the video
+            videoBg.play(); // Play the video
+        });
+
+        // Ensure the video can play through
+        videoBg.oncanplaythrough = function() {
+            videoBg.play();
+        };
+    </script>
+
+</body>
+</html>
